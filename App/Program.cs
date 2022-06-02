@@ -11,7 +11,7 @@ namespace SelfEmployed.App
         private const string InnsPath = @"inns.txt";
 
         private static readonly IInspector Inspector = new WebInspector();
-        private static readonly ISecretary Secretory = new FileSecretary();
+        private static readonly ISecretary Secretary = new FileSecretary();
 
         private static async Task Main()
         {
@@ -19,7 +19,7 @@ namespace SelfEmployed.App
 
             foreach (var inn in File.ReadLines(InnsPath))
             {
-                if (Secretory.Exists(inn))
+                if (Secretary.Exists(inn))
                     continue;
 
                 try
@@ -28,15 +28,15 @@ namespace SelfEmployed.App
 
                     await (status switch
                     {
-                        InspectionStatus.SelfEmployed => Secretory.CommitSelfEmployedAsync(inn),
-                        InspectionStatus.CommonPerson => Secretory.CommitCommonPersonAsync(inn),
-                        InspectionStatus.PoorResponse => Secretory.CommitPoorResponseAsync(inn),
+                        InspectionStatus.SelfEmployed => Secretary.CommitSelfEmployedAsync(inn),
+                        InspectionStatus.CommonPerson => Secretary.CommitCommonPersonAsync(inn),
+                        InspectionStatus.PoorResponse => Secretary.CommitPoorResponseAsync(inn),
                         _ => throw new ArgumentOutOfRangeException(nameof(status), status, null),
                     });
                 }
                 catch
                 {
-                    await Secretory.CommitPoorResponseAsync(inn);
+                    await Secretary.CommitPoorResponseAsync(inn);
                     await Task.Delay(60_000);
                 }
             }
