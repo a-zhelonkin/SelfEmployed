@@ -1,5 +1,7 @@
 # Инспектор самозанятых
 
+<img src="https://github.com/a-zhelonkin/SelfEmployed/blob/master/App/appicon.ico"/>
+
 Инструмент для проверки самозанятости ФЛ по ИНН. Как пользоваться:
 - Скачать [SelfEmployed.App.exe](https://github.com/a-zhelonkin/SelfEmployed/releases/latest/download/SelfEmployed.App.exe) из [последнего релиза](https://github.com/a-zhelonkin/SelfEmployed/releases/latest)
 - Положить рядом с файлом `inns.txt`
