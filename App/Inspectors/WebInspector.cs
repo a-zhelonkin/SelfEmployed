@@ -11,25 +11,37 @@ namespace SelfEmployed.App.Inspectors
     {
         private const string WebUrl = "https://npd.nalog.ru/check-status/";
 
-        public async Task<InspectionStatus> InspectAsync(string inn, string date)
+        public async Task<(string Inn, InspectionStatus Status)> InspectAsync(string inn, string date)
         {
-            var response = await HttpWebRequestAsync(WebUrl, new Dictionary<string, string>
+            try
             {
-                {"__EVENTTARGET", ""},
-                {"__EVENTARGUMENT", ""},
-                {"__VIEWSTATEGENERATOR", "112E02C5"},
-                {"ctl00$ctl00$tbINN", inn},
-                {"ctl00$ctl00$tbDate", date},
-                {"ctl00$ctl00$btSend", "Найти"},
-            });
+                var content = await HttpWebRequestAsync(WebUrl, new Dictionary<string, string>
+                {
+                    {"__EVENTTARGET", ""},
+                    {"__EVENTARGUMENT", ""},
+                    {"__VIEWSTATEGENERATOR", "112E02C5"},
+                    {"ctl00$ctl00$tbINN", inn},
+                    {"ctl00$ctl00$tbDate", date},
+                    {"ctl00$ctl00$btSend", "Найти"},
+                });
 
-            if (response is null)
+                return (inn, DetectStatus(inn, content));
+            }
+            catch
+            {
+                return (inn, InspectionStatus.PoorResponse);
+            }
+        }
+
+        private static InspectionStatus DetectStatus([NotNull] string inn, string content)
+        {
+            if (content is null)
                 return InspectionStatus.PoorResponse;
 
-            if (response.Contains($"{inn} является"))
+            if (content.Contains($"{inn} является"))
                 return InspectionStatus.SelfEmployed;
 
-            if (response.Contains($"{inn} не является"))
+            if (content.Contains($"{inn} не является"))
                 return InspectionStatus.CommonPerson;
 
             return InspectionStatus.PoorResponse;

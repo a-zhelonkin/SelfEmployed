@@ -14,7 +14,7 @@ namespace SelfEmployed.App.Inspectors
             Timeout = TimeSpan.FromSeconds(60),
         };
 
-        public async Task<InspectionStatus> InspectAsync(string inn, string date)
+        public async Task<(string Inn, InspectionStatus Status)> InspectAsync(string inn, string date)
         {
             var response = await _httpClient.PostAsync(
                 ApiUrl,
@@ -26,10 +26,11 @@ namespace SelfEmployed.App.Inspectors
             );
 
             var content = await response.Content.ReadAsStringAsync();
-
-            return content.Contains($"{inn} является")
+            var status = content.Contains($"{inn} является")
                 ? InspectionStatus.SelfEmployed
                 : InspectionStatus.CommonPerson;
+
+            return (inn, status);
         }
     }
 }

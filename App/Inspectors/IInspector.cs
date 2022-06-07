@@ -5,7 +5,7 @@ namespace SelfEmployed.App.Inspectors
 {
     public interface IInspector
     {
-        Task<InspectionStatus> InspectAsync([NotNull] string inn, [NotNull] string date);
+        Task<(string Inn, InspectionStatus Status)> InspectAsync([NotNull] string inn, [NotNull] string date);
     }
 
     public enum InspectionStatus
