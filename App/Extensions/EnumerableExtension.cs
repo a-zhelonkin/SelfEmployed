@@ -11,7 +11,8 @@ namespace SelfEmployed.App.Extensions
         {
             var options = new ExecutionDataflowBlockOptions
             {
-                MaxDegreeOfParallelism = DataflowBlockOptions.Unbounded,
+                MaxDegreeOfParallelism = Environment.ProcessorCount,
+                SingleProducerConstrained = true,
             };
 
             var block = new ActionBlock<T>(body, options);

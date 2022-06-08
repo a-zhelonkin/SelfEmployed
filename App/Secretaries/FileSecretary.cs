@@ -15,26 +15,29 @@ namespace SelfEmployed.App.Secretaries
 
         private readonly HashSet<string> _selfEmployedInns;
         private readonly HashSet<string> _commonPersonInns;
+        private readonly HashSet<string> _poorResponseInns;
 
         private readonly StreamWriter _selfEmployedWriter;
         private readonly StreamWriter _commonPersonWriter;
-        private readonly StreamWriter _poorResponseWriter;
 
         public FileSecretary()
         {
             _selfEmployedInns = new HashSet<string>(ReadLines(SelfEmployedPath));
             _commonPersonInns = new HashSet<string>(ReadLines(CommonPersonPath));
+            _poorResponseInns = new HashSet<string>(ReadLines(PoorResponsePath));
 
             _selfEmployedWriter = AppendOrCreateText(SelfEmployedPath);
             _commonPersonWriter = AppendOrCreateText(CommonPersonPath);
-            _poorResponseWriter = AppendOrCreateText(PoorResponsePath);
         }
 
-        public bool Exists(string inn) => _selfEmployedInns.Contains(inn) || _commonPersonInns.Contains(inn);
+        public IReadOnlyCollection<string> PoorResponseInns => _poorResponseInns;
+
+        public bool Handled(string inn) => _selfEmployedInns.Contains(inn) || _commonPersonInns.Contains(inn);
 
         public Task CommitSelfEmployedAsync(string inn)
         {
             _selfEmployedInns.Add(inn);
+            _poorResponseInns.Remove(inn);
 
             return Task.WhenAll(
                 _selfEmployedWriter.WriteLineAsync(inn),
@@ -45,6 +48,7 @@ namespace SelfEmployed.App.Secretaries
         public Task CommitCommonPersonAsync(string inn)
         {
             _commonPersonInns.Add(inn);
+            _poorResponseInns.Remove(inn);
 
             return Task.WhenAll(
                 _commonPersonWriter.WriteLineAsync(inn),
@@ -52,10 +56,12 @@ namespace SelfEmployed.App.Secretaries
             );
         }
 
-        public Task CommitPoorResponseAsync(string inn) => Task.WhenAll(
-            _poorResponseWriter.WriteLineAsync(inn),
-            Console.Out.WriteLineAsync($"Poor response inn: {inn}")
-        );
+        public Task CommitPoorResponseAsync(string inn)
+        {
+            _poorResponseInns.Add(inn);
+
+            return Console.Out.WriteLineAsync($"Poor response inn: {inn}");
+        }
 
         private static IEnumerable<string> ReadLines([NotNull] string path) =>
             File.Exists(path)

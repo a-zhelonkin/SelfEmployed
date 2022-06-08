@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Net;
@@ -27,8 +28,9 @@ namespace SelfEmployed.App.Inspectors
 
                 return (inn, DetectStatus(inn, content));
             }
-            catch
+            catch (Exception e)
             {
+                await Console.Error.WriteLineAsync($"Error while requesting web: {e.Message}");
                 return (inn, InspectionStatus.PoorResponse);
             }
         }
