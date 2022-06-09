@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Net;
+using System.Net.Security;
+using System.Security.Principal;
 using System.Threading.Tasks;
 using SelfEmployed.App.Extensions;
 
@@ -10,13 +12,19 @@ namespace SelfEmployed.App.Inspectors
 {
     public sealed class WebInspector : IInspector
     {
-        private const string WebUrl = "https://npd.nalog.ru/check-status/";
+        private static readonly Uri WebUri = new("https://npd.nalog.ru/check-status/", UriKind.Absolute);
+
+        static WebInspector()
+        {
+            ServicePointManager.Expect100Continue = false;
+            ServicePointManager.DefaultConnectionLimit = 256;
+        }
 
         public async Task<(string Inn, InspectionStatus Status)> InspectAsync(string inn, string date)
         {
             try
             {
-                var content = await HttpWebRequestAsync(WebUrl, new Dictionary<string, string>
+                var content = await HttpWebRequestAsync(WebUri, new Dictionary<string, string>
                 {
                     {"__EVENTTARGET", ""},
                     {"__EVENTARGUMENT", ""},
@@ -50,14 +58,16 @@ namespace SelfEmployed.App.Inspectors
         }
 
         private static async Task<string> HttpWebRequestAsync(
-            [NotNull] string url,
+            [NotNull] Uri uri,
             [NotNull] IReadOnlyDictionary<string, string> content
         )
         {
-            var request = (HttpWebRequest) WebRequest.Create(url);
+            var request = WebRequest.CreateHttp(uri);
             request.Method = "POST";
-            request.KeepAlive = true;
-            request.Credentials = CredentialCache.DefaultCredentials;
+            request.ContinueTimeout = 0;
+            request.AllowWriteStreamBuffering = false;
+            request.AuthenticationLevel = AuthenticationLevel.None;
+            request.ImpersonationLevel = TokenImpersonationLevel.Anonymous;
 
             await request.AddMultipartFormDataAsync(content);
 

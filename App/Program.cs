@@ -65,7 +65,7 @@ namespace SelfEmployed.App
                     _ => throw new ArgumentOutOfRangeException(nameof(status), status, null),
                 });
 
-                Console.Title = $"{++innIndex / stopwatch.Elapsed.TotalSeconds:F2} inns per seconds";
+                Console.Title = $"{++innIndex / stopwatch.Elapsed.TotalSeconds:F2} inns per second";
             }
 
             await inspectionTask;
