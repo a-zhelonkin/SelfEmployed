@@ -1,15 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <OutputType>Exe</OutputType>
         <TargetFramework>net7.0</TargetFramework>
-        <RootNamespace>SelfEmployed.App</RootNamespace>
-        <AssemblyName>SelfEmployed.App</AssemblyName>
-        <ApplicationIcon>appicon.ico</ApplicationIcon>
+        <AssemblyName>SelfEmployed.Inspector</AssemblyName>
+        <RootNamespace>SelfEmployed.Inspector</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Inspector\Inspector.csproj"/>
+        <ProjectReference Include="..\Common\Common.csproj"/>
     </ItemGroup>
 
     <ItemGroup>

@@ -1,16 +1,15 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
+using JetBrains.Annotations;
 
-namespace SelfEmployed.App.Secretaries
+namespace SelfEmployed.App.Secretaries;
+
+public interface ISecretary
 {
-    public interface ISecretary
-    {
-        IReadOnlyCollection<string> PoorResponseInns { get; }
+    IReadOnlyCollection<string> PoorResponseInns { get; }
 
-        bool Handled([NotNull] string inn);
-        Task CommitSelfEmployedAsync([NotNull] string inn);
-        Task CommitCommonPersonAsync([NotNull] string inn);
-        Task CommitPoorResponseAsync([NotNull] string inn);
-    }
+    bool Handled([NotNull] string inn);
+    Task CommitSelfEmployedAsync([NotNull] string inn);
+    Task CommitCommonPersonAsync([NotNull] string inn);
+    Task CommitPoorResponseAsync([NotNull] string inn);
 }
