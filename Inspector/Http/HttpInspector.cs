@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using JetBrains.Annotations;
 
 namespace SelfEmployed.Inspector.Http;
 
@@ -70,7 +72,10 @@ public sealed class HttpInspector : IInspector
         return (inn, InspectionStatus.PoorResponse);
     }
 
-    private static ByteArrayContent CreateFormDataString(string name, string value)
+    [Pure]
+    [NotNull]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static ByteArrayContent CreateFormDataString([NotNull] string name, [NotNull] string value)
     {
         var content = new ByteArrayContent(DefaultEncoding.GetBytes(value));
         content.Headers.ContentType = StringMediaType;

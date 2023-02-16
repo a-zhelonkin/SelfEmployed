@@ -5,23 +5,33 @@
 	<s:Boolean x:Key="/Default/Environment/SettingsMigration/IsMigratorApplied/=JetBrains_002EReSharper_002EPsi_002ECSharp_002ECodeStyle_002ECSharpUseContinuousIndentInsideBracesMigration/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/Environment/SettingsMigration/IsMigratorApplied/=JetBrains_002EReSharper_002EPsi_002ECSharp_002ECodeStyle_002ECSharpPlaceEmbeddedOnSameLineMigration/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/Environment/SettingsMigration/IsMigratorApplied/=JetBrains_002EReSharper_002EPsi_002ECSharp_002ECodeStyle_002ECSharpKeepExistingMigration/@EntryIndexedValue">True</s:Boolean>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=79a9bfe2_002D1af3_002D4442_002D9aab_002Da9d374cc7eca/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="InspectAsync_Benchmark" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=9fd67e02_002D5a25_002D45ba_002D96da_002De708b32ea30c/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="InspectAsync_Benchmark" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;NUnit3x::19BB6655-0BAE-4C4E-BE69-8C6BDDEB91D4::net7.0::SelfEmployed.Inspector.Tests.Http.HttpInspectorTests.InspectAsync_Benchmark&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;NUnit3x::19BB6655-0BAE-4C4E-BE69-8C6BDDEB91D4::net7.0::SelfEmployed.Inspector.Tests.Http.HttpInspectorTests.InspectAsync_SelfEmployed&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;NUnit3x::19BB6655-0BAE-4C4E-BE69-8C6BDDEB91D4::net7.0::SelfEmployed.Inspector.Tests.Web.WebInspectorTests.InspectAsync_SelfEmployed&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;NUnit3x::19BB6655-0BAE-4C4E-BE69-8C6BDDEB91D4::net7.0::SelfEmployed.Inspector.Tests.Web.WebInspectorTests.InspectAsync_Benchmark&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::19BB6655-0BAE-4C4E-BE69-8C6BDDEB91D4::net7.0::SelfEmployed.Inspector.Tests.Tcp.TcpInspectorTests.InspectAsync_SelfEmployed&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::19BB6655-0BAE-4C4E-BE69-8C6BDDEB91D4::net7.0::SelfEmployed.Inspector.Tests.Tcp.TcpInspectorTests.InspectAsync_Benchmark&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	
 	
 	
 	
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=a0bb3eb8_002Df2ad_002D41b9_002Dace0_002D0d9c31aae286/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="InspectAsync_SelfEmployed" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+	
+	
+	
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=bf01abff_002Db2e3_002D4228_002D8a4f_002Dae4dbba75557/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="InspectAsync_Benchmark #4" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::19BB6655-0BAE-4C4E-BE69-8C6BDDEB91D4::net7.0::SelfEmployed.Inspector.Tests.Http.HttpInspectorTests.InspectAsync_Benchmark&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;NUnit3x::19BB6655-0BAE-4C4E-BE69-8C6BDDEB91D4::net7.0::SelfEmployed.Inspector.Tests.Http.HttpInspectorTests.InspectAsync_SelfEmployed&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;NUnit3x::19BB6655-0BAE-4C4E-BE69-8C6BDDEB91D4::net7.0::SelfEmployed.Inspector.Tests.Web.WebInspectorTests.InspectAsync_SelfEmployed&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::19BB6655-0BAE-4C4E-BE69-8C6BDDEB91D4::net7.0::SelfEmployed.Inspector.Tests.Web.WebInspectorTests.InspectAsync_Benchmark&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::19BB6655-0BAE-4C4E-BE69-8C6BDDEB91D4::net7.0::SelfEmployed.Inspector.Tests.Tcp.TcpInspectorTests.InspectAsync_SelfEmployed&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::19BB6655-0BAE-4C4E-BE69-8C6BDDEB91D4::net7.0::SelfEmployed.Inspector.Tests.Tcp.TcpInspectorTests.InspectAsync_Benchmark&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
+	
 	
 	</wpf:ResourceDictionary>

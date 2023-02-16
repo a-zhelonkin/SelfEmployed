@@ -9,14 +9,26 @@ namespace SelfEmployed.Common.Extensions;
 public static class StreamExtension
 {
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static void WriteUtf8([NotNull] this Stream thiz, [NotNull] string value)
+    public static void WriteBytes([NotNull] this Stream thiz, [NotNull] byte[] buffer)
     {
-        thiz.Write(Encoding.UTF8.GetBytes(value));
+        thiz.Write(buffer, 0, buffer.Length);
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static ValueTask WriteUtf8Async([NotNull] this Stream thiz, [NotNull] string value)
+    public static Task WriteBytesAsync([NotNull] this Stream thiz, [NotNull] byte[] buffer)
     {
-        return thiz.WriteAsync(Encoding.UTF8.GetBytes(value));
+        return thiz.WriteAsync(buffer, 0, buffer.Length);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static void WriteUtf8([NotNull] this Stream thiz, [NotNull] string value)
+    {
+        thiz.WriteBytes(Encoding.UTF8.GetBytes(value));
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Task WriteUtf8Async([NotNull] this Stream thiz, [NotNull] string value)
+    {
+        return thiz.WriteBytesAsync(Encoding.UTF8.GetBytes(value));
     }
 }

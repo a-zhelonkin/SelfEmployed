@@ -2,17 +2,17 @@
 using System.Threading.Tasks;
 using JetBrains.Annotations;
 using NUnit.Framework;
-using SelfEmployed.Inspector.Http;
+using SelfEmployed.Inspector.Tcp;
 
-namespace SelfEmployed.Inspector.Tests.Http;
+namespace SelfEmployed.Inspector.Tests.Tcp;
 
 [UsedImplicitly]
-[TestFixture(TestOf = typeof(HttpInspector))]
-internal sealed class HttpInspectorTests : BenchmarkTestBase
+[TestFixture(TestOf = typeof(TcpInspector))]
+internal sealed class TcpInspectorTests : BenchmarkTestBase
 {
     private const int Iterations = 100;
 
-    private readonly IInspector _inspector = new HttpInspector();
+    private readonly IInspector _inspector = new TcpInspector();
 
     [Test]
     public async Task InspectAsync_SelfEmployed()
@@ -29,7 +29,8 @@ internal sealed class HttpInspectorTests : BenchmarkTestBase
     {
         var elapsed = await Profile(Iterations, async () =>
         {
-            await _inspector.InspectAsync("772303681564", "2023-02-12");
+            var result = await _inspector.InspectAsync("772303681564", "2023-02-12");
+            Console.WriteLine(result);
         });
 
         Console.WriteLine($"Time Elapsed {elapsed} ms; Per operation {elapsed / Iterations}");
